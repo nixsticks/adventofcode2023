@@ -23,8 +23,7 @@ def get_calibration_value(data: str) -> int:
 
 
 def solve(data: list[str]) -> int:
-    digits = [get_calibration_value(line) for line in data]
-    return sum(digits)
+    return sum([get_calibration_value(line) for line in data])
 
 
 if __name__ == "__main__":
