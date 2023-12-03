@@ -1,4 +1,4 @@
-import functools, unittest
+import functools
 
 
 bag_contents = {"red": 12, "green": 13, "blue": 14,}
