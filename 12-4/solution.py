@@ -16,7 +16,7 @@ def solve_one(cards: list[str]):
 
 def solve_two(cards: list[str]):
     base_matches = get_matches(cards)
-    copies = {card_id: 1 for card_id in base_matches.keys()}
+    copies = {i: 1 for i in range(1, len(cards) + 1)}
 
     for card in range(1, len(cards) + 1):
         matches, existing_copies = base_matches[card], copies[card]
