@@ -1,6 +1,3 @@
-from collections import deque
-
-
 def get_matches(cards: list[str]):
     card_matches = {}
 
@@ -19,15 +16,14 @@ def solve_one(cards: list[str]):
 
 def solve_two(cards: list[str]):
     base_matches = get_matches(cards)
-    matches_with_copies = {card_id: 1 for card_id in base_matches.keys()}
+    copies = {card_id: 1 for card_id in base_matches.keys()}
 
     for card in range(1, len(cards) + 1):
-        matches = base_matches[card]
-        copies = matches_with_copies[card]
+        matches, existing_copies = base_matches[card], copies[card]
         for m in range(1, matches + 1):
-            matches_with_copies[card + m] += copies
+            copies[card + m] += existing_copies
     
-    return sum(matches_with_copies.values())
+    return sum(copies.values())
 
 
 if __name__ == "__main__":
