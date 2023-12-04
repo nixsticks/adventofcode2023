@@ -18,18 +18,16 @@ def solve_one(cards: list[str]):
 
 
 def solve_two(cards: list[str]):
-    card_matches = get_matches(cards)
-    scratchcards = 0
-    queue = deque(card_matches.keys())
+    base_matches = get_matches(cards)
+    matches_with_copies = {card_id: 1 for card_id in base_matches.keys()}
 
-    while len(queue) > 0:
-        card = queue.popleft()
-        scratchcards += 1
-        matches = card_matches[card]
+    for card in range(1, len(cards) + 1):
+        matches = base_matches[card]
+        copies = matches_with_copies[card]
         for m in range(1, matches + 1):
-            queue.append(card + m)
-
-    return scratchcards
+            matches_with_copies[card + m] += copies
+    
+    return sum(matches_with_copies.values())
 
 
 if __name__ == "__main__":
